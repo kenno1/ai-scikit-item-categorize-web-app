@@ -17,8 +17,12 @@ def index(request):
         )
     else:
         title = [request.POST["title"]]
+        print("title:", title)
+        result = model.predict(title)[0]
+        print("result:", result)
+        pred = idx2category[result]
         return render(
             request,
             "nlp/home.html",
-            {"title": title}
+            {"title": pred}
         )
